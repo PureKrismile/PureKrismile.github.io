@@ -6,13 +6,15 @@
   
   <title>如何搭建个人博客 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="article">
+  <meta name="description" content="该博文是我的第一篇博文 本文目标：通过GitHub搭建个人博客 STEP1：环境准备 1.访问git与nodejs官方地址下载软件  2.安装好后在桌面点击鼠标右键，点击Git Bash Here  3.输入：git --version验证git安装是否成功       输入：node -v验证nodejs安装是否成功  4.安装Hexo:     输入指令：npm install hexo -g">
+<meta property="og:type" content="article">
 <meta property="og:title" content="如何搭建个人博客">
 <meta property="og:url" content="http://example.com/2021/09/11/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="该博文是我的第一篇博文 本文目标：通过GitHub搭建个人博客 STEP1：环境准备 1.访问git与nodejs官方地址下载软件  2.安装好后在桌面点击鼠标右键，点击Git Bash Here  3.输入：git --version验证git安装是否成功       输入：node -v验证nodejs安装是否成功  4.安装Hexo:     输入指令：npm install hexo -g">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-11T09:19:15.000Z">
-<meta property="article:modified_time" content="2021-09-11T09:22:58.093Z">
+<meta property="article:modified_time" content="2021-09-11T11:45:09.300Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -93,7 +95,72 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <p>该博文是我的第一篇博文</p>
+<p>本文目标：通过GitHub搭建个人博客</p>
+<p>STEP1：环境准备</p>
+<pre><code>1.访问git与nodejs官方地址下载软件
+
+2.安装好后在桌面点击鼠标右键，点击Git Bash Here
+
+3.输入：git --version验证git安装是否成功
+      输入：node -v验证nodejs安装是否成功
+
+4.安装Hexo:
+    输入指令：npm install hexo -g 安装Hexo
+    输入：hexo -v 验证Hexo安装是否成功
+    输入指令：npm install --save hexo-deployer-git 安装Hexo依赖
+</code></pre>
+<span id="more"></span>
+
+<p>STEP2：配置SSH key<br>目的：免密将源码及资源上传到GitHub</p>
+<p>检验：cd ~/.ssh在本地查看是否配置好SSH key<br>注：SSH配置好后保存在c:/用户/Administrator/.ssh</p>
+<pre><code>1.生成SSH key
+
+输入：ssh-keygen -t rsa -C &quot;邮件地址&quot;并回车三次
+注：邮箱地址为GitHub账号绑定邮箱
+
+2.配置SSH key
+
+进入ssh文件夹，复制id_rsa.pub文件里全部内容
+注：该文件可用记事本打开
+
+复制后打开GitHub个人主页，在settings中找到SSH and GPG keys选项，点击New SSH key
+将复制的内容粘贴到key中，title无限制
+
+点击Add SSH key，完成配置
+检验：在git中输入：ssh -T git@github.com接着输入yes
+
+成功配置后继续配置账号和密码
+输入：    $ git config --global user.name &quot;用户名&quot; 
+    $ git config --global user.email &quot;绑定邮箱&quot;
+</code></pre>
+<p>STEP3：搭建个人博客</p>
+<pre><code>1.新建一个存放博客的文件夹，打开git
+注：需通过存放博客的文件夹打开git
+
+2.依次输入：hexo init--&gt;hexo g生成静态网页
+
+3.部署到GitHub：
+    在个人信息页面点击New repository
+    命名创建的仓库（注：格式为：用户名.github.io）
+    勾选Add a README file
+    点击Create repository(绿色按钮)
+
+4.编辑_config.yml（_config.yml在博客存放目录下）
+    deploy板块按以下方法修改：
+    deploy:
+          type: git
+          repository: git@github.com:用户名/用户名.github.io.git
+          branch: main
+
+5.发布到GitHub：
+    通过博客存放文件夹打开git
+    输入：hexo d
+
+6.成功搭建个人博客：
+    在浏览器访问：https://用户名.github.io/
+</code></pre>
+
       
     </div>
     <footer class="article-footer">
